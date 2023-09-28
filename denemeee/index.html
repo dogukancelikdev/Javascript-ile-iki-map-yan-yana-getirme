@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>İki Polygon Alanı Örneği</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    .map {
+      height: 400px;
+      width: 50%;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <div id="map1" class="map"></div>
+  <div id="map2" class="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // İlk harita oluşturma
+    var map1 = L.map('map1').setView([51.505, -0.09], 13);
+
+    // İkinci harita oluşturma
+    var map2 = L.map('map2').setView([40.7128, -74.0060], 13);
+
+    // Harita görünümü ayarları
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map1);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map2);
+
+    // İlk polygon alanı
+    var polygon1 = L.polygon([
+      [51.509, -0.08],
+      [51.503, -0.06],
+      [51.51, -0.047]
+    ]).addTo(map1);
+
+    // İkinci polygon alanı
+    var polygon2 = L.polygon([
+      [40.718, -73.997],
+      [40.712, -74.006],
+      [40.708, -73.993]
+    ]).addTo(map2);
+
+    // Popup içerikleri
+    polygon1.bindPopup("Bu birinci polygon alanıdır.");
+    polygon2.bindPopup("Bu ikinci polygon alanıdır.");
+  </script>
+</body>
+</html>
